@@ -1,4 +1,5 @@
 ﻿using System;
+using Kütüphanelib;
 using şube2.emlakcılib;
 using şube2emlakçı;
 
@@ -8,95 +9,23 @@ namespace şube2emlakçı
     {
         static void Main(string[] args)
         {
-            Ev evim = new Ev();
-            Console.WriteLine("Alan Giriniz: ");
-            evim.Alan = double.Parse(Console.ReadLine());
-            Console.WriteLine("Kat No Giriniz: ");
-            evim.Katno = int.Parse(Console.ReadLine());
-            Console.WriteLine("Oda Sayısı Giriniz: ");
-            evim.Odasayısı = int.Parse(Console.ReadLine());
-            Console.WriteLine("Semt Giriniz: ");
-            evim.Semt = Console.ReadLine();
-            evim.EvBilgileri();
+            KiralikEv ke = new KiralikEv(500, 600, 3, "Kiralik Ev", 100, 80);
+            KiralikEv ke1 = new KiralikEv(800, 900, 2, "Kiralik Ev", 120, 90);
+            KiralikEv ke2 = new KiralikEv(10000, 10000, 4, "Kiralik Ev", 200, 100);
 
-            Ev evim2 = new Ev();
-            evim2.Alan=120;
-            evim2.SetKatno(5);
-            evim2.SetOdasayısı(3);
-            //evim2.odasayısı = 3;
-            evim2.SetSemt("Kızılay");
-            evim2.EvBilgileri();
 
-            //Ev evim2 = new Ev { katno = 5, alan = 120, odasayısı = 3, semt = "Gazi" }; yukarıdaki ile aynı olayı yapar.
+            var se = new SatilikEv(400, 3, "Satılık Ev", 110, 60);
+            var se1 = new SatilikEv(700, 2, "Satılık Ev", 120, 70);
+            var se2 = new SatilikEv(900, 4, "Satılık Ev", 140, 80);
 
-            Bilgisayar pc1 = new Bilgisayar();
-            pc1.ssd = 1;
-            pc1.ram = 16;
-            pc1.marka = "casper";
-            pc1.model = "excalıbur";
-            pc1.PcBilgileri();
+            Ev[] evler = { ke, ke1, ke2, se, se1, se2 };
 
-            Console.WriteLine(pc1.PcBilgileri()); 
-            Console.WriteLine(evim.EvBilgileri());
-            Console.WriteLine(evim2.EvBilgileri());
+            for (int i = 0; i < evler.Length; i++)
+            {
+                Console.WriteLine(evler[i].EvBilgileri());
 
-            Ev evim3 = new Ev(3, 2, 120);
-            Console.WriteLine(evim3.EvBilgileri());
-
-            var evim4 = new Ev(3, 1, 120);
-            Console.WriteLine(evim4.EvBilgileri());
-
-            Console.WriteLine("Toplam ev sayısı " + Ev.Sayac);
-
-            Console.WriteLine(evim.GetOdasayısı());
-            Console.WriteLine(evim.GetKatno());
-            Console.WriteLine(evim.GetAlan());
-            Console.WriteLine(evim.GetSemt());
-
-            Console.WriteLine(evim2.GetOdasayısı());
-            Console.WriteLine(evim2.GetKatno());
-            Console.WriteLine(evim2.GetAlan());
-            Console.WriteLine(evim2.GetSemt());
-
-            evim.Semt = "sincan";
-            Console.WriteLine(evim.Semt);
-
-            evim.Odasayısı = 3;
-            Console.WriteLine(evim.Odasayısı);
-
-            
-
-            
-            
-            
-            
+                Console.WriteLine("\n------------------\n");
+            }
         }
-
-
     }
-
-    
 }
-//Ev evim = new Ev(); //Ev classından bir nesne türetildi. 
-
-//evim: nesnenin referansı. nesneye ulasmak için kullanılır. Referanslar nesnelere ulasmak için kullanılır.
-
-//Ev: referansın veri tipi. Her class aynı zamanda bir veri tipidir.
-
-//new: Nesne üretmek için kullanılan anahtar sözcük.Nesneler heap bölgesinde olusturulur. Referanslar da stack bölgesinde olusturulur.
-
-//private: sadece class içinde erişilebilir.
-
-//public: class dışında da erişilebilir.
-
-//bir classdan birden fazla nesne üretilebilir.
-
-//DRY: Don't Repeat Yourself. Kod tekrarından kaçınmak için kullanılan bir prensiptir.
-
-//Bir class içinde static olarak tanımlanan üyelere, class adı ile erişilir. Örneğin Ev.sayac şeklinde.
-
-//Kapsülleme ilkesi(Encapsulation): class içinde yapılan işlerin class dışından erişilememesi ilkesidir.
-//Bu ilkeye uygun olarak fieldlar private olarak tanımlanır ve erişim için propertyler kullanılır.
-//örneğin: Odasayısı field'ına değer atama işlemi yapmak için öncelikle field private yapıldı.
-//sornasında bu fiedle erişebilen public SetOdasayısı(int odasayısı) metodu tanımlandı.
-//bu metod içinde gelen değerin mutak değere alınarak odasayısını fieldına aktarıldı ve bu işlemde bu metodu kullananların bilgisi olmadı.
